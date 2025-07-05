@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400..900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.png">
+    <title>CORTUANT</title>
+</head>
+<body>
+    <main>
+            <div class="app-title"><h2>CORTUANT</h2></div>
+            <div class="folder-name-holder"><h5><%=user.username%>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp; </h5><p><% if(currentFolder){%>
+                  <%=currentFolder.name%>
+                <%}%></p></div>
+            <div class="logout-btn-holder"><button onclick="window.location.href='/logout'">Log Out</button></div>
+            <div class="folder-section">
+                <div class="folder-heading-add">
+                    <h3>Folders</h3>
+                     <button class="folder-add-btn" onclick="openModal('Folder Name','Create','/create-folder')">+</button>
+                </div>
+                <div class="folder-list">
+                    <% if(folders){%>
+                        <% folders.forEach(function(folder){%>
+                        <div class="folder">
+                        <div class="folder-name"><p onclick="window.location.href='/select-folder/<%=folder.id%>'"><%=folder.name%></p></div>
+                        <div class="folder-update-icon-holder"><img src="/updateFolder.jpg" onclick="openModal('Folder Name','Update','/update-folder/<%=folder.id%>')"></div>
+                        <div class="folder-delete-btn-holder"><img src="/deleteFolder.png" onclick="window.location.href='/delete-folder/<%=folder.id%>'"></div>
+                       </div>
+                        <%})%>
+                    <%}%>  
+                </div>
+            </div>
+            <div class="file-section">
+                <% if(currentFolder && currentFolder.files && currentFolder.files.length>0){%>
+                    <%currentFolder.files.forEach(function(file){%>
+                       <div class="file">
+                    <div class="file-name"><%=file.name%></div>
+                    <div class="file-size"><%=(file.size/1024).toFixed(2)%>&nbspKB</div>
+                    <div class="file-date"><%=new Date(file.createdAt).toLocaleDateString()%></div>
+                    <div class="file-delete-btn-holder" onclick="window.location.href='/delete-file/<%=file.id%>?currentFolderId=<%=currentFolder.id%>'"></div>
+                    <div class="file-download" onclick="window.location.href='/download-file/<%=file.id%>?currentFolderId=<%=currentFolder.id%>'"></div>
+                    </div>
+                    <%})%>
+                    <%}else{%>
+                        <h1>No files</h1>
+                    <%}%>
+                    
+            </div>
+            <div class="file-operations">
+                <%if(currentFolder){%>
+                <div class="create-file-btn" onclick="openModal('File Name','CREATE','/create-file')">ADD</div>
+                <%}%>
+            </div>
+            <div id="folderModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <form action="" method="POST" id="modalForm">
+                        <% if (currentFolder) { %>
+                         <input type="hidden" name="folderId" value="<%= currentFolder.id %>">
+                        <% } %>
+                        <label for="folderName" id="modalLabel"></label>
+                        <input type="text" name="folderName" maxlength="20" id="fileInput" required>
+                        <button type="submit" id="modalBtn"></button>
+                    </form>
+                </div>
+            </div>
+            
+    </main>
+    <script>
+  var selectedFolderName="";
+  function openModal(operationName,buttonText,formAction) {
+    document.getElementById('folderModal').style.display = 'flex';
+    document.getElementById("modalLabel").innerText=operationName;
+    document.getElementById('modalBtn').innerText=buttonText;
+    document.getElementById('modalForm').action=formAction;
+    if(operationName==='File Name'){
+        document.getElementById("modalForm").enctype="multipart/form-data";
+        document.getElementById("fileInput").type="file";
+        document.getElementById("fileInput").name="file";
+    }
+    else{
+        document.getElementById("modalForm").enctype="";
+        document.getElementById("fileInput").type="text";
+        document.getElementById("fileInput").name="folderName";
+    }
+  }
+
+  function closeModal() {
+    document.getElementById('folderModal').style.display = 'none';
+  }
+  
+ 
+  
+  window.onclick = function(e) {
+    const modal = document.getElementById('folderModal');
+    if (e.target === modal) closeModal();
+  }
+</script>
+</body>
+</html>

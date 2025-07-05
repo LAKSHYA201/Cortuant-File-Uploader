@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400..900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.png">
+  <title>Login</title>
+  <style>
+    body {
+      margin: 0;
+      background-image: url(/loginBG.gif);
+      background-size: cover;
+
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 100vh;
+      font-family: "Audiowide", sans-serif;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-family: "Audiowide", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      margin-left: 15px;
+      text-align: center;
+      color: rgb(243, 255, 71);
+      text-shadow:
+        0 0 5px gold,
+        0 0 15px orange,
+        0 0 25px white;
+      letter-spacing: 2px;
+    }
+
+    .stack {
+      position: relative;
+      width: 320px;
+      height: 400px;
+      animation: pulse 2s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    .sheet {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px solid gold;
+      border-radius: 12px;
+      box-shadow: 0 0 20px gold;
+      background-color: rgba(0, 0, 0, 0.6);
+      animation: glow 2s infinite ease-in-out;
+    }
+
+    .sheet:nth-child(2) {
+      transform: translate(10px, 10px);
+      opacity: 0.7;
+    }
+
+    .sheet:nth-child(3) {
+      transform: translate(20px, 20px);
+      opacity: 0.4;
+    }
+
+    .login-form {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 30px;
+      box-sizing: border-box;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .login-form h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: rgb(243, 255, 71);
+      text-shadow:
+        0 0 5px gold,
+        0 0 15px orange,
+        0 0 25px white;
+    }
+
+    .login-form input {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 2px solid gold;
+      box-shadow: 0 0 10px gold;
+      border-radius: 6px;
+      font-size: 16px;
+      background-color: black;
+      color: gold;
+    }
+
+    .login-form input[type="submit"] {
+      padding: 10px;
+      background-color: black;
+      border: none;
+      border-radius: 6px;
+      border: 2px solid gold;
+      color: gold;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-form input[type="submit"]:hover {
+      background: gold;
+      color: black;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 10px gold;
+      }
+      50% {
+        box-shadow: 0 0 25px gold;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.02);
+      }
+    }
+
+    .pillar-left{
+        position: absolute;
+        left: 20vw;
+        height: 100%;
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+        gap:24px;
+         animation: scroll-up 10s linear infinite;
+         font-family: "Rajdhani", sans-serif;
+      font-weight: bold;
+      font-style: normal;
+      font-size: 24px;
+    }
+    
+    .pillar-left p{
+        transform: rotate(-90deg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(243, 255, 71);
+      text-shadow:
+        0 0 5px gold,
+        0 0 15px orange,
+        0 0 25px white;
+    }
+    .pillar-right{
+        position: absolute;
+        right: 20vw;
+        height: 100%;
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+        gap:50px;
+         animation: scroll-up 10s linear infinite;
+         font-family: "Orbitron", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: bold;
+       font-style: normal;
+      font-size: 20px;
+    }
+    
+    .pillar-right p{
+        transform: rotate(90deg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(243, 255, 71);
+      text-shadow:
+        0 0 5px gold,
+        0 0 15px orange,
+        0 0 25px white;
+    }
+    @keyframes scroll-up {
+   0%   { transform: translateY(0); }
+  50%  { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+  }
+  
+   .login-form p{
+     color: rgb(243, 255, 71);
+     text-shadow:
+        0 0 5px gold,
+        0 0 15px orange,
+        0 0 25px white;
+    }
+   
+   p a{
+    color: rgb(243, 255, 71);
+    text-shadow:
+        0 0 5px gold,
+        0 0 15px orange,
+        0 0 25px white;
+   }
+   input{
+  font-family: "Audiowide", sans-serif;
+   }
+  </style>
+</head>
+<body>
+   
+  <h1>CORTUANT</h1>
+
+  <div class="stack">
+    <div class="sheet"></div>
+    <div class="sheet"></div>
+    <div class="sheet login-form">
+      <h2>Login</h2>
+       <form action="/login" method="POST">
+         <input type="text" placeholder="Username" name="username" />
+         <input type="password" placeholder="Password" name="password"/>
+         <input type="submit" value="Log in"></button>
+       </form>
+      <p><a href="/signup">Sign Up</a>&nbsp;instead ?</p>
+    </div>
+  </div>
+
+  
+  <div class="pillar-left">  
+        <p>फ़ाइल</p><p> अपलोड</p><p>केंद्र</p><p>|</p><p>डेटा</p><p>स्थानांतरण</p>
+      <p>सक्रिय</p><p>|</p><p>100%</p><p>सुरक्षा</p><p>|</p>
+  </div>
+
+  
+  <div class="pillar-right">
+      <p>ЦЕНТР</p><p>ЗАГРУЗКИ</p><p>ФАЙЛОВ</p><p>|</p><p>ЦИФРОВОЙ</p><p>ТРАНСФЕР</p><p>|</p>
+      <p>АКТИВЕН</p><p>|</p><p>100%</p><p>|</p>
+  </div>
+
+</body>
+</html>
