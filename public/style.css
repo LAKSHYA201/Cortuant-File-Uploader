@@ -68,10 +68,10 @@ main{
     position: relative;
     grid-row:2/3;
     grid-column:2/4;
-    background-image: url("/fileSection.gif");
+    background-image: url("/addFile.gif");
     background-repeat: no-repeat;
-    background-position:40% 85%;
-    background-size: 45%;
+    background-position:40% 65%;
+    background-size: 20%;
     display: flex;
     flex-direction: column;
     gap: 6px;
