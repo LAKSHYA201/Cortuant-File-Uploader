@@ -15,7 +15,7 @@ async function postSignUp(req,res){
     const existingUser=await prisma.user.findUnique({
         where:{username}
     });
-    console.log(existingUser);
+    
        if(existingUser){
         return res.render("signup",{error:"* username already exists"});
        }
@@ -109,7 +109,7 @@ async function getSelectedFolder(req,res){
          }
     });
     if(!currentFolder) return res.render("application",{folders,user:req.user,currentFolder:null});
-    console.log(currentFolder.files);
+    
     res.render("application",{folders,user:req.user,currentFolder});
 }
 
