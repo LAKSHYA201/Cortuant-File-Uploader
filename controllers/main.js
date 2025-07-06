@@ -128,6 +128,9 @@ async function postCreateFile(req,res){
         publicId:result.public_id,
         }
     });
+    fs.unlink(req.file.path, (err) => {
+    if (err) console.error("Error deleting local file:", err);
+  });
     res.redirect(`/select-folder/${req.body.folderId}`);
 }
 
